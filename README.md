@@ -1,30 +1,27 @@
 <div align="center">
 
-# template-repository
+# easy-eccom
 
-> This is a template repository which simplifies initialization of repository from scratch.
+> This is simple products listing & cart management project.
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/Sunny-unik/template-repository)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/Sunny-unik/easy-eccom)
 
 </div>
 
 ## Tech Stack
 
-- [TODO: Tech Stack]
+- React.js
+- Node.js
 
 ## 🤝 Contributing
 
-We encourage you to contribute to [TODO: Repo Name]! All contributors are required to abide by our [Code of Conduct](/docs/Code-of-conduct.md). Please check out the [Contributing guide](/docs/Contributing.md) for guidelines about how to proceed with your contribution.
+We encourage you to contribute to easy-eccom! All contributors are required to abide by our [Code of Conduct](/docs/Code-of-conduct.md). Please check out the [Contributing guide](/docs/Contributing.md) for guidelines about how to proceed with your contribution.
 Feel free for start discussion.
 
 ## Project Setup
 
 For development setup read [getting started guide](/docs/Getting-started-guide.md)
 
-# Deployment
-
-This website is deployed on [TODO: Service link]
-
 ## ⚖️ LICENSE
 
-MIT © [Sunny-unik/template-repository](LICENSE)
+MIT © [Sunny-unik/easy-eccom](LICENSE)
