@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import ProductCartContext from "../ProductCartContext";
+
 export default function ProductCard(props) {
-  // eslint-disable-next-line react/prop-types
   const product = props.product || {};
+  const { addToCart } = useContext(ProductCartContext);
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
@@ -13,7 +16,10 @@ export default function ProductCard(props) {
       <p className="text-gray-600 mt-2">{product.description}</p>
       <div className="flex justify-between items-center mt-4">
         <span className="text-xl font-semibold">{product.price}</span>
-        <button className="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700">
+        <button
+          className="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700"
+          onClick={() => addToCart(product)}
+        >
           Add to Cart
         </button>
       </div>

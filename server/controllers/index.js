@@ -3,7 +3,7 @@ const database = require("../index");
 createProduct = (req, res) => {
   const { name, image, description, price } = req.body;
   database.default.push({
-    id: database.default.length,
+    id: database.default.length + 1,
     name,
     image,
     description,
