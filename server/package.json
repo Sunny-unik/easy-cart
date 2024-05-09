@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "node --watch index.js",
+    "dev": "nodemon index.js",
     "build": "echo \"Error: optimize build not available for now\" && exit 1"
   },
   "keywords": [],
@@ -18,5 +18,8 @@
     "express": "^4.19.2",
     "helmet": "^7.1.0",
     "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
