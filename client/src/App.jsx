@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
 import { ProductCartProvider } from "./ProductCartContext";
+import AddProduct from "./components/AddProduct";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/cart" Component={Cart} />
+          <Route path="/add-product" Component={AddProduct} />
+          <Route path="/*" Component={Cart} />
         </Routes>
       </Router>
     </ProductCartProvider>

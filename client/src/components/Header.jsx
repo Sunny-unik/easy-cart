@@ -54,6 +54,12 @@ export default function Header() {
             Products
           </Link>
           <Link
+            to="/add-product"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Add Product
+          </Link>
+          <Link
             to="/cart"
             className="text-sm font-semibold leading-6 text-gray-900 flex items-center gap-2"
           >
@@ -106,6 +112,12 @@ export default function Header() {
                     className="text-sm font-semibold leading-6 text-gray-900"
                   >
                     Products
+                  </Link>
+                  <Link
+                    to="/add-product"
+                    className="text-sm font-semibold leading-6 text-gray-900"
+                  >
+                    Add Products
                   </Link>
                   <Link
                     to="/cart"

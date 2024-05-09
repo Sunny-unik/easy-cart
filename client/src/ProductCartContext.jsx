@@ -7,10 +7,17 @@ export const ProductCartProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
+  const refreshProducts = async () => {
     axios("http://localhost:4000/product")
       .then((res) => setProducts(res.data.data))
-      .catch((error) => console.error("Error fetching products:", error));
+      .catch((error) => {
+        alert("Server error in fetch products, try again later");
+        console.error("Error fetching products:", error);
+      });
+  };
+
+  useEffect(() => {
+    refreshProducts();
   }, []);
 
   const addToCart = (product) => {
@@ -42,6 +49,7 @@ export const ProductCartProvider = ({ children }) => {
         cartItems,
         addToCart,
         removeFromCart,
+        refreshProducts,
       }}
     >
       {children}
