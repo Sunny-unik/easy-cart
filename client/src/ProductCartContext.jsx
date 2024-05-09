@@ -26,6 +26,7 @@ export const ProductCartProvider = ({ children }) => {
         return [...prevCartItems, { ...product, quantity: 1 }];
       }
     });
+    alert("Product Added to Cart");
   };
 
   const removeFromCart = (productId) => {
