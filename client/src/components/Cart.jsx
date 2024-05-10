@@ -1,8 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ProductCartContext from "../ProductCartContext";
 
 export default function Cart() {
   const { cartItems, removeFromCart } = useContext(ProductCartContext);
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  let totalPrice = 0;
+
+  const togglePopover = () => setIsPopoverVisible(!isPopoverVisible);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Form submitted", event);
+    setIsPopoverVisible(false);
+  };
 
   return (
     <div className="max-w-7xl mx-auto p-6">
@@ -10,7 +20,7 @@ export default function Cart() {
       {cartItems.length > 0 ? (
         <div>
           {cartItems.map((item) => {
-            console.log(item);
+            totalPrice += +item.price.split("$").reverse()[0];
             return (
               <div
                 key={item.id}
@@ -33,6 +43,78 @@ export default function Cart() {
               </div>
             );
           })}
+          <div className="flex items-center justify-end mt-6">
+            <div>
+              <span className="me-3">Total amount: ${totalPrice}</span>
+              <button
+                className="bg-violet-500 text-white py-2 px-4 rounded-lg hover:bg-violet-600"
+                onClick={togglePopover}
+              >
+                Place Order
+              </button>
+            </div>
+          </div>
+          {isPopoverVisible && (
+            <>
+              <div className="fixed inset-0 z-20 bg-gray-800 opacity-50"></div>
+              <div className="fixed inset-0 z-30 flex items-center justify-center">
+                <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold mb-4">Form</span>
+                    <button
+                      onClick={togglePopover}
+                      className="float-end text-2xl text-gray-500 hover:text-gray-700"
+                    >
+                      &times;
+                    </button>
+                  </div>
+                  <form onSubmit={handleSubmit}>
+                    <div className="mb-4">
+                      <label
+                        htmlFor="firstName"
+                        className="block text-gray-700"
+                      >
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        className="w-full p-2 border rounded-md"
+                        required
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label htmlFor="lastName" className="block text-gray-700">
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        className="w-full p-2 border rounded-md"
+                        required
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label htmlFor="address" className="block text-gray-700">
+                        Address
+                      </label>
+                      <textarea
+                        id="address"
+                        name="address"
+                        className="w-full p-2 border rounded-md"
+                        required
+                      ></textarea>
+                    </div>
+                    <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       ) : (
         <p>Your cart is empty.</p>
