@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Cart from "./components/Cart";
 import { ProductCartProvider } from "./ProductCartContext";
 import AddProduct from "./components/AddProduct";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path="/" Component={Home} />
           <Route path="/cart" Component={Cart} />
           <Route path="/add-product" Component={AddProduct} />
-          <Route path="/*" Component={Cart} />
+          <Route path="/*" Component={NotFound} />
         </Routes>
       </Router>
     </ProductCartProvider>
