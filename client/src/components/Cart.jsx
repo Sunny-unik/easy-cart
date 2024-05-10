@@ -1,17 +1,40 @@
 import { useContext, useState } from "react";
 import ProductCartContext from "../ProductCartContext";
+import axios from "axios";
 
 export default function Cart() {
-  const { cartItems, removeFromCart } = useContext(ProductCartContext);
+  const { cartItems, removeFromCart, emptyCart } =
+    useContext(ProductCartContext);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   let totalPrice = 0;
 
   const togglePopover = () => setIsPopoverVisible(!isPopoverVisible);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Form submitted", event);
-    setIsPopoverVisible(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target),
+      [firstName, lastName, address] = [...formData.values()];
+    try {
+      const response = await axios.post("http://localhost:4000/product/order", {
+        firstName,
+        lastName,
+        address,
+      });
+      if (response.data.status === "ok") {
+        emptyCart();
+        setIsPopoverVisible(false);
+        return alert(response.data.message);
+      }
+      const errors = response.data.errors;
+      if (errors.length) {
+        const errorsString = errors.join(",\n");
+        alert(
+          `${errorsString.charAt(0).toUpperCase()}${errorsString.slice(1)}.`
+        );
+      } else alert("Server Error, Try Again Later");
+    } catch (error) {
+      alert("Error creating product:", error.message);
+    }
   };
 
   return (
@@ -68,7 +91,7 @@ export default function Cart() {
                       &times;
                     </button>
                   </div>
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="mb-4">
                       <label
                         htmlFor="firstName"
